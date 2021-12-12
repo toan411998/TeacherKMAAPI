@@ -84,6 +84,14 @@ namespace QuanLyGiangVien.Controllers
             return m;
         }
 
+        // GET: api/
+        [HttpGet("GetTeacherSubjectByTeacherID")]
+        public async Task<List<teacherSubject>> GetTeacherSubjectByTeacherID(string teacherId)
+        {
+            var m = await _MyContext.teacherSubject.Where(u => u.teacherId == teacherId).ToListAsync();
+            return m;
+        }
+
         [HttpPut("EditTeacherSubject")]
         [AllowAnonymous]
         public async Task<IActionResult> EditTeacherSubject([FromBody] teacherSubject model)

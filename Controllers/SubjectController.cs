@@ -79,6 +79,36 @@ namespace QuanLyGiangVien.Controllers
             return m;
         }
 
+        // GET: api/
+        [HttpGet("GetSubjectByID")]
+        public async Task<ActionResult<subject>> GetSubjectByID(string id)
+        {
+            var m = await _MyContext.subject.Where(u => u.id == id).FirstOrDefaultAsync();
+
+            if (m == null)
+            {
+                return NotFound();
+            }
+
+            return m;
+        }
+
+        // GET: api/
+        [HttpGet("GetTeachSubject")]
+        public async Task<List<subject>> GetTeachSubject()
+        {
+            var m = await _MyContext.subject.Where(u => u.type == null).ToListAsync();
+            return m;
+        }
+
+        // GET: api/
+        [HttpGet("GetStudySubject")]
+        public async Task<List<subject>> GetStudySubject()
+        {
+            var m = await _MyContext.subject.Where(u => u.type == "study").ToListAsync();
+            return m;
+        }
+
         [HttpPut("EditSubject")]
         [AllowAnonymous]
         public async Task<IActionResult> EditSubject([FromBody] subject model)

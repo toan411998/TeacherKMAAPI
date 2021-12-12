@@ -10,7 +10,7 @@ namespace QuanLyGiangVien.Model
         public string id { set; get; }
         public string? teacherId { set; get; }
         public string? subjectId { set; get; }
-        public int? year { set; get; }
+        public string? year { set; get; }
         public int? semester { set; get; }
         public string? room { set; get; }
     }

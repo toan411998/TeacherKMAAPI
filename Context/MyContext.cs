@@ -24,6 +24,7 @@ namespace Swagger.Demo.Context
         public DbSet<history> history { get; set; }
         public DbSet<dailyWork> dailyWork { get; set; }
         public DbSet<PINTeacher> PINTeacher { get; set; }
+        public DbSet<classroom> classroom { get; set; }
 
     }
 
