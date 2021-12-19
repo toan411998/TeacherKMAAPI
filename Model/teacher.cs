@@ -20,6 +20,7 @@ namespace QuanLyGiangVien.Model
         public string? phone { set; get; }
         public string? mail { set; get; }
         public string? password { set; get; }
+        public string? role { set; get; }
         
     }
 }

@@ -106,7 +106,8 @@ namespace QuanLyGiangVien.Controllers
                 address = model.address,
                 phone = model.phone,
                 mail = model.mail,
-                password = hash_pass
+                password = hash_pass,
+                role = model.role
             };
             var res = await _MyContext.teacher.Where(u => u.username == model.username).FirstOrDefaultAsync();
 
@@ -144,7 +145,9 @@ namespace QuanLyGiangVien.Controllers
                 }
             }
 
-            var user = await _MyContext.teacher.Where(u => u.username == username && u.password == hash_pass).FirstOrDefaultAsync();
+            var user = await _MyContext.teacher
+                .Where(u => u.username == username && u.password == hash_pass)
+                .FirstOrDefaultAsync();
 
             if (user == null)
             {
