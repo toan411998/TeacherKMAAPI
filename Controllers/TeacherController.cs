@@ -159,7 +159,7 @@ namespace QuanLyGiangVien.Controllers
 
         [HttpPut("EditTeacher")]
         [AllowAnonymous]
-        public async Task<IActionResult> EditTeacher([FromBody] teacher model, string newPass)
+        public async Task<IActionResult> EditTeacher([FromBody] teacher model, string oldPass,string newPass)
         {
             var hash_pass = "";
             var new_pass = "";
@@ -190,7 +190,7 @@ namespace QuanLyGiangVien.Controllers
                 }
             }
 
-            var user = await _MyContext.teacher.AsNoTracking().Where(u => u.username == model.username && u.password == hash_pass).FirstOrDefaultAsync();
+            var user = await _MyContext.teacher.AsNoTracking().Where(u => u.username == model.username && u.password == oldPass).FirstOrDefaultAsync();
             //var user = await _MyContext.users.AsNoTracking().Where(u => u.username == model.username).FirstOrDefaultAsync();
 
             if (user == null)
