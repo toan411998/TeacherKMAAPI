@@ -154,7 +154,9 @@ namespace QuanLyGiangVien.Controllers
                 return NotFound();
             }
 
-            return user;
+            var token = generateJwtToken(user);
+
+            return new OkObjectResult(new TeacherResponse(user, token));
         }
 
         [HttpPut("EditTeacher")]

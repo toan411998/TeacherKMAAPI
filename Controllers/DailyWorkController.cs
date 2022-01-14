@@ -92,11 +92,21 @@ namespace QuanLyGiangVien.Controllers
 
         // GET: api/
         [HttpGet("GetDailyWorkByTeacherId")]
-        public async Task<List<dailyWork>> GetDailyWorkByTeacherId(string teacherId)
+        public async Task<List<dailyWork>> GetDailyWorkByTeacherId(string teacherId, string type)
         {
             var m = await _MyContext.dailyWork.Where(u => u.teacherId == teacherId).ToListAsync();
+            List<dailyWork> l = null;
 
-            return m;
+            foreach (dailyWork item in m)
+            {
+                var i = await _MyContext.subject.Where(u => u.id == item.subjectId).FirstOrDefaultAsync();
+                if (i.type.Equals(type))
+                {
+                    l.Add(item);
+                }
+            }
+
+            return l;
         }
 
         [HttpPut("EditDailyWork")]
